@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.angcyo.exkeyboarddemo.RSoftInputLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/soft_input_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#A1A1A1"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="内容底部"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onSetPadding100Click"
+                android:text="显示100dp"
+                android:textAllCaps="false"/>
+
+            <Button
+                android:id="@+id/set_padding400_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onSetPadding400Click"
+                android:text="显示400dp"
+                android:textAllCaps="false"/>
+
+            <Button
+                android:id="@+id/show_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onShowClick"
+                android:text="键盘高度"
+                android:textAllCaps="false"/>
+
+            <Button
+                android:id="@+id/hide_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onHideClick"
+                android:text="隐藏"
+                android:textAllCaps="false"/>
+        </LinearLayout>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="输入内容"
+            android:textColorHint="@android:color/white"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onTest"
+                android:text="占位按钮"
+                android:textAllCaps="false"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onLayoutFullScreen"
+                android:text="LayoutFullScreen"
+                android:textAllCaps="false"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#e1e1e1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:text="表情顶部"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="表情底部"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:text="表情顶部"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:text="表情底部"/>
+
+    </RelativeLayout>
+
+</com.angcyo.exkeyboarddemo.RSoftInputLayout>

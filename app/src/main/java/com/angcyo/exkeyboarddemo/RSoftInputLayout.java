@@ -133,10 +133,6 @@ public class RSoftInputLayout extends ViewGroup {
         t += paddingTop;
         contentLayout.layout(l, t, r, contentLayout.getMeasuredHeight() + paddingTop);
         emojiLayout.layout(l, contentLayout.getMeasuredHeight() + paddingTop, r, getMeasuredHeight());
-
-//        if (getPaddingBottom() > 100 || contentLayout.getMeasuredHeight() == getMeasuredHeight()) {
-//            isEmojiShow = false;
-//        }
     }
 
     @Override
@@ -229,7 +225,9 @@ public class RSoftInputLayout extends ViewGroup {
      * 采用默认的键盘高度显示表情, 如果键盘从未弹出过, 则使用一个缺省的高度
      */
     public void hideEmojiLayout() {
-        showEmojiLayoutInner(0);
+        if (isKeyboardShow || isEmojiShow) {
+            showEmojiLayoutInner(0);
+        }
     }
 
     public void addOnEmojiLayoutChangeListener(OnEmojiLayoutChangeListener listener) {

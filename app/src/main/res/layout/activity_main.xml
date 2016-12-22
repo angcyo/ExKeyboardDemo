@@ -28,17 +28,16 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/padd100"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="onSetPadding100Click"
                 android:text="显示100dp"
                 android:textAllCaps="false"/>
 
             <Button
-                android:id="@+id/set_padding400_view"
+                android:id="@+id/padd400"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="onSetPadding400Click"
                 android:text="显示400dp"
                 android:textAllCaps="false"/>
 
@@ -46,7 +45,6 @@
                 android:id="@+id/show_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="onShowClick"
                 android:text="键盘高度"
                 android:textAllCaps="false"/>
 
@@ -54,7 +52,6 @@
                 android:id="@+id/hide_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="onHideClick"
                 android:text="隐藏"
                 android:textAllCaps="false"/>
         </LinearLayout>
@@ -71,17 +68,24 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/onTest"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="onTest"
                 android:text="占位按钮"
                 android:textAllCaps="false"/>
 
             <Button
+                android:id="@+id/layout_full"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="onLayoutFullScreen"
                 android:text="LayoutFullScreen"
+                android:textAllCaps="false"/>
+
+            <Button
+                android:id="@+id/dialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="InDialog"
                 android:textAllCaps="false"/>
 
         </LinearLayout>

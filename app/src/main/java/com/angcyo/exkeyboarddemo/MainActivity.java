@@ -4,93 +4,89 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.TextView;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    RSoftInputLayout mSoftInputLayout;
-    ArrayList<String> datas = new ArrayList<>();
-    private RecyclerView mRecyclerView;
+    Control mControl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mSoftInputLayout = (RSoftInputLayout) findViewById(R.id.soft_input_layout);
-        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        initContentLayout();
+        mControl = new Control((RecyclerView) findViewById(R.id.recycler_view),
+                (RSoftInputLayout) findViewById(R.id.soft_input_layout),
+                this);
+        findViewById(R.id.padd100).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onSetPadding100Click(v);
+            }
+        });
+        findViewById(R.id.padd400).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onSetPadding400Click(v);
+            }
+        });
+        findViewById(R.id.show_layout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onShowClick(v);
+            }
+        });
+        findViewById(R.id.hide_layout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onHideClick(v);
+            }
+        });
+        findViewById(R.id.onTest).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onTest(v);
+            }
+        });
+        findViewById(R.id.dialog).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                inDialog(v);
+            }
+        });
+        findViewById(R.id.layout_full).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onLayoutFullScreen(v);
+            }
+        });
+        mControl.initContentLayout();
     }
 
     @Override
     public void onBackPressed() {
-        if (mSoftInputLayout.requestBackPressed()) {
+        if (mControl.onBackPressed()) {
             super.onBackPressed();
         }
     }
 
-    protected void initContentLayout() {
-        mSoftInputLayout.addOnEmojiLayoutChangeListener(new RSoftInputLayout.OnEmojiLayoutChangeListener() {
-            @Override
-            public void onEmojiLayoutChange(boolean isEmojiShow, boolean isKeyboardShow, int height) {
-                Log.w("Robi", "表情显示:" + mSoftInputLayout.isEmojiShow() + " 键盘显示:" + mSoftInputLayout.isKeyboardShow()
-                        + " 表情高度:" + mSoftInputLayout.getShowEmojiHeight() + " 键盘高度:" + mSoftInputLayout.getKeyboardHeight());
-                String log = "表情显示:" + isEmojiShow + " 键盘显示:" + isKeyboardShow + " 高度:" + height;
-                Log.e("Robi", log);
-                datas.add(log);
-                mRecyclerView.getAdapter().notifyItemInserted(datas.size());
-                mRecyclerView.smoothScrollToPosition(datas.size());
-            }
-        });
-        datas.add("内容顶部");
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        mRecyclerView.setAdapter(new RecyclerView.Adapter() {
-            @Override
-            public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-                TextView textView = new TextView(MainActivity.this);
-                return new RecyclerView.ViewHolder(textView) {
-                };
-            }
-
-            @Override
-            public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-                ((TextView) holder.itemView).setText(datas.get(position));
-            }
-
-            @Override
-            public int getItemCount() {
-                return datas.size();
-            }
-        });
-    }
 
     public void onSetPadding100Click(View view) {
-        mSoftInputLayout.showEmojiLayout(dpToPx(100));
+        mControl.onSetPadding100Click();
     }
 
     public void onSetPadding400Click(View view) {
-        mSoftInputLayout.showEmojiLayout(dpToPx(400));
+        mControl.onSetPadding400Click();
     }
 
     public void onShowClick(View view) {
-        mSoftInputLayout.showEmojiLayout();
+        mControl.onShowClick();
     }
 
     public void onHideClick(View view) {
-        mSoftInputLayout.hideEmojiLayout();
-    }
-
-    private int dpToPx(int dp) {
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, getResources().getDisplayMetrics());
+        mControl.onHideClick();
     }
 
     public void onTest(View view) {
@@ -99,13 +95,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void onLayoutFullScreen(View view) {
         enableLayoutFullScreen();
-        mSoftInputLayout.requestLayout();
-        mSoftInputLayout.post(new Runnable() {
-            @Override
-            public void run() {
-                mSoftInputLayout.requestLayout();
-            }
-        });
+        mControl.onLayoutFullScreen();
+    }
+
+    public void inDialog(View view) {
+        new DialogDemo().show(getSupportFragmentManager(), "dialog");
     }
 
     protected void enableLayoutFullScreen() {

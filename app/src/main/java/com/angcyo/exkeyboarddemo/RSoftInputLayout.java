@@ -1,5 +1,8 @@
 package com.angcyo.exkeyboarddemo;
 
+import android.animation.Animator;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Rect;
@@ -7,6 +10,7 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
 import android.view.inputmethod.InputMethodManager;
 
 import java.util.HashSet;
@@ -53,6 +57,12 @@ public class RSoftInputLayout extends ViewGroup {
             onSizeChanged(0, 0, 0, 0);
         }
     };
+    private ValueAnimator mValueAnimator;
+
+    /**
+     * 使用动画的形式展开表情布局
+     */
+    private boolean isAnimToShow = true;
 
     public RSoftInputLayout(Context context) {
         super(context);
@@ -69,6 +79,10 @@ public class RSoftInputLayout extends ViewGroup {
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public RSoftInputLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
+    }
+
+    public void setAnimToShow(boolean animToShow) {
+        isAnimToShow = animToShow;
     }
 
     @Override
@@ -194,15 +208,59 @@ public class RSoftInputLayout extends ViewGroup {
         }
 
         boolean keyboardShow = isKeyboardShow();
+        int oldHeight = showEmojiHeight;
 
         isEmojiShow = height > 0;
-        showEmojiHeight = height;
+        this.showEmojiHeight = height;
         if (keyboardShow) {
             hideSoftInput();
         } else {
             requestLayout();
-            post(mCheckSizeChanged);
+            if (isAnimToShow) {
+                animToShow(height, oldHeight);
+            } else {
+                post(mCheckSizeChanged);
+            }
         }
+    }
+
+    private void animToShow(int height, int oldHeight) {
+        if (mValueAnimator != null) {
+            return;
+        }
+
+        mValueAnimator = ObjectAnimator.ofInt(oldHeight, height);
+        mValueAnimator.setDuration(300);
+        mValueAnimator.setInterpolator(new DecelerateInterpolator());
+        mValueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                showEmojiLayoutInner((Integer) animation.getAnimatedValue());
+            }
+        });
+        mValueAnimator.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                mValueAnimator = null;
+                post(mCheckSizeChanged);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+        mValueAnimator.start();
     }
 
     /**

@@ -41,7 +41,7 @@ public class DialogDemo extends DialogFragment {
         //View inflate = inflater.inflate(R.layout.activity_main, container, false);
         View inflate = inflater.inflate(R.layout.dialog_main, (ViewGroup) getDialog().getWindow().findViewById(Window.ID_ANDROID_CONTENT), false);
 
-        RSoftInputLayout softInputLayout = (RSoftInputLayout) inflate.findViewById(R.id.soft_input_layout);
+        RSoftInputLayout2 softInputLayout =  inflate.findViewById(R.id.soft_input_layout);
         mControl = new Control((RecyclerView) inflate.findViewById(R.id.recycler_view),
                 softInputLayout,
                 getActivity());

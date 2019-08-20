@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mControl = new Control((RecyclerView) findViewById(R.id.recycler_view),
-                (RSoftInputLayout) findViewById(R.id.soft_input_layout),
+                (RSoftInputLayout2) findViewById(R.id.soft_input_layout),
                 this);
         findViewById(R.id.padd100).setOnClickListener(new View.OnClickListener() {
             @Override

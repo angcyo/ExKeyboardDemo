@@ -23,22 +23,22 @@ import java.util.ArrayList;
  */
 public class Control {
     ArrayList<String> datas = new ArrayList<>();
-    RSoftInputLayout mSoftInputLayout;
+    RSoftInputLayout2 mSoftInputLayout;
     Activity mActivity;
     private RecyclerView mRecyclerView;
 
-    public Control(RecyclerView recyclerView, RSoftInputLayout softInputLayout, Activity activity) {
+    public Control(RecyclerView recyclerView, RSoftInputLayout2 softInputLayout, Activity activity) {
         mRecyclerView = recyclerView;
         mSoftInputLayout = softInputLayout;
         mActivity = activity;
     }
 
     protected void initContentLayout() {
-        mSoftInputLayout.addOnEmojiLayoutChangeListener(new RSoftInputLayout.OnEmojiLayoutChangeListener() {
+        mSoftInputLayout.addOnEmojiLayoutChangeListener(new RSoftInputLayout2.OnEmojiLayoutChangeListener() {
             @Override
             public void onEmojiLayoutChange(boolean isEmojiShow, boolean isKeyboardShow, int height) {
-                Log.w("Robi", "表情显示:" + mSoftInputLayout.isEmojiShow() + " 键盘显示:" + mSoftInputLayout.isKeyboardShow()
-                        + " 表情高度:" + mSoftInputLayout.getShowEmojiHeight() + " 键盘高度:" + mSoftInputLayout.getKeyboardHeight());
+                Log.w("Robi", "表情显示:" + mSoftInputLayout.isEmojiLayoutShow() + " 键盘显示:" + mSoftInputLayout.isSoftKeyboardShow()
+                        + " 表情高度:" + height + " 键盘高度:" + height);
                 String log = "表情显示:" + isEmojiShow + " 键盘显示:" + isKeyboardShow + " 高度:" + height;
                 Log.e("Robi", log);
                 datas.add(log);

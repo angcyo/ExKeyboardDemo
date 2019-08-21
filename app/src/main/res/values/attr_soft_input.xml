@@ -6,6 +6,8 @@
         <attr name="r_enable_emoji_restore" format="boolean" />
         <attr name="r_switch_check_delay" format="integer" />
         <attr name="r_anim_duration" format="integer" />
+        <attr name="r_soft_input_anim_padding_top" format="dimension" />
+        <attr name="r_soft_input_anim_padding_min_top" format="dimension" />
     </declare-styleable>
 
 </resources>

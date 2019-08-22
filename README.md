@@ -11,3 +11,6 @@
 - 支持布局`preview`
 - 内容布局支持`wrap_conent`, `margin`属性.(高度很小时, 默认从Gravity.BOTTOM开始布局)
 - 支持`表情布局`恢复.(如:显示键盘之前是表情布局, 那么隐藏键盘后就会显示表情布局)
+- 支持`ViewPager`+多`Fragment`中使用, 支持`Activity`+多`Fragment`中使用, 需要手动设置`enableSoftInput`, 任何时候, 只要保证有且仅有一个`SoftInputLayout`处于激活状态就行
+- 支持`anim padding top`属性
+- 支持动画回调, 可以入侵动画属性值

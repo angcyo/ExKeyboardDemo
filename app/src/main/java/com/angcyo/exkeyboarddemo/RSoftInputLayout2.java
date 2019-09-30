@@ -40,6 +40,26 @@ import java.util.Iterator;
  * 键盘弹出, 会回调 onApplyWindowInsets , insets.getSystemWindowInsetBottom, 就是键盘的高度
  * 此时onSizeChange方法不会执行, 应为系统是用 PaddingBottom的方式, 为键盘腾出空间
  * <p>
+ * <p>
+ * 使用方式:
+ * <p>
+ * 1. android:windowSoftInputMode="adjustResize"
+ * <p>
+ * 2.
+ *
+ * <pre>
+ * &lt;RSoftInputLayout2&gt;
+ *     &lt;第一个必须是内容布局&gt;
+ *     &lt;第二个会被识别为emoji布局, 非必须&gt;
+ *     &lt;其他子布局&gt;
+ *     &lt;其他子布局&gt;
+ *     &lt;其他子布局&gt;
+ *     ...
+ * &lt;/RSoftInputLayout2&gt;
+ * </pre>
+ * <p>
+ * <p>
+ * <p>
  * 创建人员：Robi
  * 创建时间：2016/12/21 9:01
  * 修改人员：Robi

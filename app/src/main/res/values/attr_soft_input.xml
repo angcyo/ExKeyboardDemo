@@ -3,6 +3,10 @@
     <declare-styleable name="RSoftInputLayout2">
         <attr name="r_default_soft_input_height" format="dimension" />
         <attr name="r_enable_soft_input_anim" format="boolean" />
+        <attr name="r_enable_soft_input_anim_show" format="boolean" />
+        <attr name="r_enable_soft_input_anim_hide" format="boolean" />
+        <attr name="r_enable_soft_input" format="boolean" />
+        <attr name="r_enable_soft_input_inset" format="boolean" />
         <attr name="r_enable_emoji_restore" format="boolean" />
         <attr name="r_switch_check_delay" format="integer" />
         <attr name="r_anim_duration" format="integer" />
